@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Get Avatar</string>
+
+    <string name="title_top">Top</string>
+    <string name="title_accessories">Accessories</string>
+    <string name="title_hat_color">Hat Color</string>
+    <string name="title_hair_color">Hair Color</string>
+    <string name="title_facial_hair">Facial Hair</string>
+    <string name="title_facial_hair_color">Facial Hair Color</string>
+    <string name="title_clothes">Clothes</string>
+    <string name="title_clothe_color">Color Fabric</string>
+    <string name="title_clothe_graphic">Graphic</string>
+    <string name="title_eyes">Eyes</string>
+    <string name="title_eyebrow">Eyebrow</string>
+    <string name="title_mouth">Mouth</string>
+    <string name="title_skin">Skin</string>
+</resources>

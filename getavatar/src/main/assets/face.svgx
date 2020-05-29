@@ -1,0 +1,6 @@
+<g id="Face" transform="translate(76.000000, 82.000000)" fill="#000000">
+      {{mouthSvg}}
+      {{noseSvg}}
+      {{eyesSvg}}
+      {{eyebrowSvg}}
+</g>
