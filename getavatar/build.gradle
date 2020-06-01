@@ -1,4 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'appsroxcom'
+    repoName = 'maven'
+    groupId = 'com.appsrox'
+    artifactId = 'getavatar'
+    publishVersion = '1.0.0'
+    desc = 'Avataaars generator library for Android'
+    website = 'https://github.com/appsroxcom/AvatarPicker'
+}
 
 android {
     compileSdkVersion 29
