@@ -1,24 +1,24 @@
-# AvatarPicker
-Easily add Avatar picker in your Android application.
+# GetAvataaars
+Easily add avatar picker dialog in your Android application.
 
 <img src="art/screenshot1.png" width=200/>
 
 ## Setup
 
 ```
-implementation 'com.appsrox:getavatar:1.0.0'
+implementation 'com.appsrox:getavatar:1.1.0'
 ```
 
 ## Usage
 
-To show Avatar picker -
+To show avatar picker dialog -
 
 ```
         AvatarDialog avatarDialog = AvatarDialog.newInstance(avatarUri);
-        avatarDialog.show(getSupportFragmentManager(), "fragment_avatar");
+        avatarDialog.show(getSupportFragmentManager(), "dialog_avatar");
 ```
 
-To get Avatar bitmap -
+To get avatar bitmap -
 
 ```
 public class MainActivity extends AppCompatActivity implements AvatarDialog.AvatarDialogListener {

@@ -8,7 +8,7 @@ publish {
     artifactId = 'getavatar'
     publishVersion = '1.1.0'
     desc = 'GetAvataaars library for Android'
-    website = 'https://github.com/appsroxcom/AvatarPicker'
+    website = 'https://github.com/appsroxcom/GetAvataaars'
 }
 
 android {
