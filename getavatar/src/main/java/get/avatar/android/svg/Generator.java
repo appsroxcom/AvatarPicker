@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Pair;
 
 import static get.avatar.android.svg.methods.Clothes.getClothSvg;
+import static get.avatar.android.svg.methods.Colors.clothColorHex;
 import static get.avatar.android.svg.methods.Colors.skinColorHex;
 import static get.avatar.android.svg.methods.Colors.skinSvg;
 import static get.avatar.android.svg.methods.Face.eyebrowSvg;
@@ -20,7 +21,8 @@ public class Generator {
 
     public String getSvg(Options options) {
         return Util.getSvg("main.svgx",
-                new Pair<String, String>("styleSvg", styleSvg(options.style)),
+                new Pair<String, String>("customDefs", options.customDefs),
+                new Pair<String, String>("styleSvg", styleSvg(options.style, options.backgroundFill)),
                 new Pair<String, String>("skinColorHex", skinColorHex(options.skin)),
                 new Pair<String, String>("skinSvg", skinSvg(options.skin, "mask-6")),
                 new Pair<String, String>("getClothSvg", getClothSvg(options.clothes, options.clothColor, options.graphic)),
@@ -29,10 +31,13 @@ public class Generator {
                 );
     }
 
-    private String styleSvg(Enums.AvatarStyle avatarStyle) {
+    private String styleSvg(Enums.AvatarStyle avatarStyle, String backgroundFill) {
         switch (avatarStyle) {
             case circle:
-                return Util.getSvg("style.svgx");
+                return Util.getSvg("style.svgx",
+                        new Pair<String, String>("backgroundFill", backgroundFill));
+            case custom:
+                return backgroundFill;
             default:
                 return "";
         }
@@ -48,7 +53,9 @@ public class Generator {
     }
 
     public static class Options {
+        public String customDefs;
         public Enums.AvatarStyle style;
+        public String backgroundFill;
         public Enums.Top top;
         public Enums.Accessories accessories;
         public Enums.HairColor hairColor;
@@ -64,11 +71,13 @@ public class Generator {
         public Enums.Graphic graphic;
 
         public Options() {
+            customDefs = "";
             style = Enums.AvatarStyle.circle;
-            top = Enums.Top.shorthairfrizzle;
+            backgroundFill = clothColorHex(Enums.ClothColor.blue1);
+            top = Enums.Top.shortHairFrizzle;
             accessories = Enums.Accessories.kurt;
             hairColor = Enums.HairColor.brownDark;
-            facialHair = Enums.FacialHair.moustachemagnum;
+            facialHair = Enums.FacialHair.moustacheMagnum;
             clothes = Enums.Cloth.blazerShirt;
             clothColor = Enums.ClothColor.gray1;
             eyes = Enums.Eyes.wink;

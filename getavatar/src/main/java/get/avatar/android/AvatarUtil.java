@@ -67,7 +67,9 @@ public class AvatarUtil {
         for (String param : uri.getQueryParameterNames()) {
             String value = uri.getQueryParameter(param);
             switch(param) {
+                case "customDefs": options.customDefs = value;break;
                 case "avatarStyle": options.style = Enums.AvatarStyle.valueOf(value);break;
+                case "backgroundFill": options.backgroundFill = value;break;
                 case "topType": options.top = Enums.Top.valueOf(value);break;
                 case "accessoriesType": options.accessories = Enums.Accessories.valueOf(value);break;
                 case "hatColor": options.hatColor = Enums.HatColor.valueOf(value);break;

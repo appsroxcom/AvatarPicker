@@ -105,15 +105,15 @@ public class Colors {
                 return "#929598";
             case heather:
                 return "#3C4F5C";
-            case pastelblue:
+            case pastelBlue:
                 return "#B1E2FF";
-            case pastelgreen:
+            case pastelGreen:
                 return "#A7FFC4";
-            case pastelorange:
+            case pastelOrange:
                 return "#FFDEB5";
-            case pastelred:
+            case pastelRed:
                 return "#FFAFB9";
-            case pastelyellow:
+            case pastelYellow:
                 return "#FFFFB1";
             case pink:
                 return "#FF488E";
@@ -147,7 +147,7 @@ public class Colors {
         }
     }
 
-    private static String clothColorHex(ClothColor color) {
+    public static String clothColorHex(ClothColor color) {
         switch (color) {
             case black:
                 return "#262E33";

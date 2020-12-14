@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -31,7 +32,7 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
 
     private String avatarUri;
     private Bitmap avatarBitmap;
-    private String avatarStyle, topType, accessoriesType, hatColor, hairColor, facialHairType, facialHairColor, clotheType, clotheColor, clotheGraphic, eyeType, eyebrowType, mouthType, skinColor;
+    private String customDefs, avatarStyle, backgroundFill, topType, accessoriesType, hatColor, hairColor, facialHairType, facialHairColor, clotheType, clotheColor, clotheGraphic, eyeType, eyebrowType, mouthType, skinColor;
 
     /**
      * Avatar dialog listener
@@ -44,10 +45,19 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
         // Empty constructor is required for DialogFragment
     }
 
-    public static AvatarDialog newInstance(String avatarUri) {
+    /**
+     * Create instance
+     *
+     * @param avatarUri
+     * @param options {backgroundFill, customDefs}
+     * @return
+     */
+    public static AvatarDialog newInstance(String avatarUri, String... options) {
         AvatarDialog frag = new AvatarDialog();
         Bundle args = new Bundle();
         args.putString("avatarUri", avatarUri);
+        if (options.length > 0) args.putString("backgroundFill", options[0]);
+        if (options.length > 1) args.putString("customDefs", options[1]);
         frag.setArguments(args);
         return frag;
     }
@@ -56,6 +66,9 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         avatarUri = getArguments().getString("avatarUri");
         initValues();
+        backgroundFill = getArguments().getString("backgroundFill", backgroundFill);
+        customDefs = getArguments().getString("customDefs", customDefs);
+        if (!TextUtils.isEmpty(customDefs)) avatarStyle = Enums.AvatarStyle.custom.name();
 
         View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_avatar, null);
         avatar =  view.findViewById(R.id.avatar);
@@ -125,7 +138,9 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
 
     private void initValues() {
         Generator.Options options = AvatarUtil.getOptions(avatarUri);
+        customDefs = options.customDefs;
         avatarStyle = options.style.name();
+        backgroundFill = options.backgroundFill;
         topType = options.top.name();
         accessoriesType = options.accessories.name();
         hatColor = options.hatColor.name();
@@ -158,12 +173,12 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
     }
 
     private void initSpinner(Spinner spinner, String value, String[] values) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, values);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.avatar_spinner_item, values);
+        adapter.setDropDownViewResource(R.layout.avatar_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         for (int i=0; i<values.length; i++) {
-            if (values[i].equals(value)) {
+            if (encodeName(values[i]).equals(value)) {
                 spinner.setSelection(i);
                 break;
             }
@@ -173,14 +188,31 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
     private String[] getStringArray(Enum<?>[] enums) {
         String[] array = new String[enums.length];
         for (int i=0; i<enums.length; i++) {
-            array[i] = enums[i].name();
+            array[i] = decodeName(enums[i].name());
         }
         return array;
     }
 
+    //to words
+    private String decodeName(String camelCase) {
+        return capsSentence(camelCase.replaceAll("([A-Z][a-z]+)", " $1") // Words beginning with UC
+                .replaceAll("([A-Z][A-Z]+)", " $1") // "Words" of only UC
+                .replaceAll("([^A-Za-z ]+)", " $1") // "Words" of non-letters
+                .trim(), true);
+    }
+
+    //to camel case
+    private String encodeName(String displayName) {
+        return capsSentence(displayName.replaceAll(" ", ""), false);
+    }
+
+    private String capsSentence(String str, boolean flag) {
+        return (flag ? str.substring(0, 1).toUpperCase() : str.substring(0, 1).toLowerCase()) + str.substring(1);
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item = parent.getSelectedItem().toString();
+        String item = encodeName(parent.getSelectedItem().toString());
         int viewId = parent.getId();
 
         if (viewId == R.id.top_type_spinner) topType = item;
@@ -208,8 +240,8 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
         refreshRow(clotheColorSpinner, clotheType.startsWith("blazer") ? View.GONE : View.VISIBLE);
         refreshRow(clotheGraphicSpinner, clotheType.startsWith("graphic") ? View.VISIBLE : View.GONE);
         refreshRow(facialHairColorSpinner, facialHairType.equals("blank") || topType.equals("hijab") ? View.GONE : View.VISIBLE);
-        refreshRow(accessoriesTypeSpinner, topType.equals("eyepatch") ? View.GONE : View.VISIBLE);
-        refreshRow(hairColorSpinner, topType.contains("hair") && !topType.equals("nohair") ? View.VISIBLE : View.GONE);
+        refreshRow(accessoriesTypeSpinner, topType.equals("eyePatch") ? View.GONE : View.VISIBLE);
+        refreshRow(hairColorSpinner, topType.contains("hair") && !topType.equals("noHair") ? View.VISIBLE : View.GONE);
         refreshRow(hatColorSpinner, (topType.contains("hat") && !topType.equals("hat")) || topType.equals("hijab") || topType.equals("turban") ? View.VISIBLE : View.GONE);
     }
 
@@ -229,21 +261,23 @@ public class AvatarDialog extends DialogFragment implements AdapterView.OnItemSe
     }
 
     private String getAvatarUri() {
-        StringBuilder sb = new StringBuilder(String.format("%s://svg?avatarStyle=%s", AVATAR_SCHEME, !TextUtils.isEmpty(avatarStyle) ? avatarStyle : Enums.AvatarStyle.circle.name()));
-        if (!TextUtils.isEmpty(topType)) sb.append("&topType=").append(topType);
-        if (!TextUtils.isEmpty(accessoriesType)) sb.append("&accessoriesType=").append(accessoriesType);
-        if (!TextUtils.isEmpty(hatColor)) sb.append("&hatColor=").append(hatColor);
-        if (!TextUtils.isEmpty(hairColor)) sb.append("&hairColor=").append(hairColor);
-        if (!TextUtils.isEmpty(facialHairType)) sb.append("&facialHairType=").append(facialHairType);
-        if (!TextUtils.isEmpty(facialHairColor)) sb.append("&facialHairColor=").append(facialHairColor);
-        if (!TextUtils.isEmpty(clotheType)) sb.append("&clotheType=").append(clotheType);
-        if (!TextUtils.isEmpty(clotheColor)) sb.append("&clotheColor=").append(clotheColor);
-        if (!TextUtils.isEmpty(clotheGraphic)) sb.append("&graphicType=").append(clotheGraphic);
-        if (!TextUtils.isEmpty(eyeType)) sb.append("&eyeType=").append(eyeType);
-        if (!TextUtils.isEmpty(eyebrowType)) sb.append("&eyebrowType=").append(eyebrowType);
-        if (!TextUtils.isEmpty(mouthType)) sb.append("&mouthType=").append(mouthType);
-        if (!TextUtils.isEmpty(skinColor)) sb.append("&skinColor=").append(skinColor);
-        return sb.toString();
+        Uri.Builder uri = Uri.parse(String.format("%s://svg?avatarStyle=%s", AVATAR_SCHEME, !TextUtils.isEmpty(avatarStyle) ? avatarStyle : Enums.AvatarStyle.circle.name())).buildUpon();
+        if (!TextUtils.isEmpty(customDefs)) uri.appendQueryParameter("customDefs", customDefs);
+        if (!TextUtils.isEmpty(backgroundFill)) uri.appendQueryParameter("backgroundFill", backgroundFill);
+        if (!TextUtils.isEmpty(topType)) uri.appendQueryParameter("topType", topType);
+        if (!TextUtils.isEmpty(accessoriesType)) uri.appendQueryParameter("accessoriesType", accessoriesType);
+        if (!TextUtils.isEmpty(hatColor)) uri.appendQueryParameter("hatColor", hatColor);
+        if (!TextUtils.isEmpty(hairColor)) uri.appendQueryParameter("hairColor", hairColor);
+        if (!TextUtils.isEmpty(facialHairType)) uri.appendQueryParameter("facialHairType", facialHairType);
+        if (!TextUtils.isEmpty(facialHairColor)) uri.appendQueryParameter("facialHairColor", facialHairColor);
+        if (!TextUtils.isEmpty(clotheType)) uri.appendQueryParameter("clotheType", clotheType);
+        if (!TextUtils.isEmpty(clotheColor)) uri.appendQueryParameter("clotheColor", clotheColor);
+        if (!TextUtils.isEmpty(clotheGraphic)) uri.appendQueryParameter("graphicType", clotheGraphic);
+        if (!TextUtils.isEmpty(eyeType)) uri.appendQueryParameter("eyeType",eyeType);
+        if (!TextUtils.isEmpty(eyebrowType)) uri.appendQueryParameter("eyebrowType", eyebrowType);
+        if (!TextUtils.isEmpty(mouthType)) uri.appendQueryParameter("mouthType", mouthType);
+        if (!TextUtils.isEmpty(skinColor)) uri.appendQueryParameter("skinColor", skinColor);
+        return uri.build().toString();
     }
 
 }

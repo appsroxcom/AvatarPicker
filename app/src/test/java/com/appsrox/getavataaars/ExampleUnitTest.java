@@ -1,4 +1,4 @@
-package com.appsrox.avatarpicker;
+package com.appsrox.getavataaars;
 
 import org.junit.Test;
 

@@ -1,0 +1,5 @@
+getavataaars.com
+https://github.com/fangpenlin/avataaars-generator
+https://github.com/gkoberger/avataaars
+
+https://github.com/BigBadaboom/androidsvg/blob/master/LICENSE

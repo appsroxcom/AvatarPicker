@@ -25,6 +25,6 @@
         app:layout_constraintTop_toTopOf="parent"
         android:onClick="showAvatarPicker"
         android:background="@null"
-        android:src="@drawable/placeholder" />
+        android:src="@drawable/avatar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

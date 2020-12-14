@@ -1,4 +1,4 @@
-package com.appsrox.avatarpicker;
+package com.appsrox.getavataaars;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.appsrox.avatarpicker", appContext.getPackageName());
+        assertEquals("com.appsrox.getavataaars", appContext.getPackageName());
     }
 }

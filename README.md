@@ -1,7 +1,7 @@
 # AvatarPicker
 Easily add Avatar picker in your Android application.
 
-<img src="screenshots/screenshot1.png" width=200/>
+<img src="art/screenshot1.png" width=200/>
 
 ## Setup
 

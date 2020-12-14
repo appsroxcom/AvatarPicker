@@ -17,12 +17,12 @@ public class Tops {
 
     public static String topSVG(Enums.Top top, Enums.FacialHair fh, Enums.Accessories acc, Enums.HatColor hColor, Enums.FacialHairColor fhc, Enums.HairColor hairC) {
         switch (top) {
-            case nohair:
+            case noHair:
                 return Util.getSvg("tops/top/nohair.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case eyepatch:
+            case eyePatch:
                 return Util.getSvg("tops/top/eyepatch.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc))
                 );
@@ -44,200 +44,200 @@ public class Tops {
                         new Pair<String, String>("hatColor", hatColor(hColor, "turban_mask3")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case winterhat1:
+            case winterHat1:
                 return Util.getSvg("tops/top/winterhat1.svgx",
                         new Pair<String, String>("hatColorHex", hatColorHex(hColor)),
                         new Pair<String, String>("hatColor", hatColor(hColor, "hat_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case winterhat2:
+            case winterHat2:
                 return Util.getSvg("tops/top/winterhat2.svgx",
                         new Pair<String, String>("hatColorHex", hatColorHex(hColor)),
                         new Pair<String, String>("hatColor", hatColor(hColor, "hat_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case winterhat3:
+            case winterHat3:
                 return Util.getSvg("tops/top/winterhat3.svgx",
                         new Pair<String, String>("hatColorHex", hatColorHex(hColor)),
                         new Pair<String, String>("hatColor", hatColor(hColor, "hat_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case winterhat4:
+            case winterHat4:
                 return Util.getSvg("tops/top/winterhat4.svgx",
                         new Pair<String, String>("hatColorHex", hatColorHex(hColor)),
                         new Pair<String, String>("hatColor", hatColor(hColor, "hat_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairbighair:
+            case longHairBigHair:
                 return Util.getSvg("tops/top/longhairbighair.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "hair_mask3")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairbob:
+            case longHairBob:
                 return Util.getSvg("tops/top/longhairbob.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "bob_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairbun:
+            case longHairBun:
                 return Util.getSvg("tops/top/longhairbun.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "bun_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhaircurly:
+            case longHairCurly:
                 return Util.getSvg("tops/top/longhaircurly.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "curly_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhaircurvy:
+            case longHairCurvy:
                 return Util.getSvg("tops/top/longhaircurvy.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "curvy_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairdreads:
+            case longHairDreads:
                 return Util.getSvg("tops/top/longhairdreads.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "dread_mask2")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairfrida:
+            case longHairFrida:
                 return Util.getSvg("tops/top/longhairfrida.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairfro:
+            case longHairFro:
                 return Util.getSvg("tops/top/longhairfro.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "fro_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairfroband:
+            case longHairFroBand:
                 return Util.getSvg("tops/top/longhairfroband.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "band_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairnottoolong:
+            case longHairNotTooLong:
                 return Util.getSvg("tops/top/longhairnottoolong.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "long_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairshavedsides:
+            case longHairShavedSides:
                 return Util.getSvg("tops/top/longhairshavedsides.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairmiawallace:
+            case longHairMiaWallace:
                 return Util.getSvg("tops/top/longhairmiawallace.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "wall_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairstraight:
+            case longHairStraight:
                 return Util.getSvg("tops/top/longhairstraight.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "long_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairstraight2:
+            case longHairStraight2:
                 return Util.getSvg("tops/top/longhairstraight2.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "long_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case longhairstraightstrand:
+            case longHairStraightStrand:
                 return Util.getSvg("tops/top/longhairstraightstrand.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "strand_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairdreads01:
+            case shortHairDreads01:
                 return Util.getSvg("tops/top/shorthairdreads01.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "1_mask_1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairdreads02:
+            case shortHairDreads02:
                 return Util.getSvg("tops/top/shorthairdreads02.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "short_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairfrizzle:
+            case shortHairFrizzle:
                 return Util.getSvg("tops/top/shorthairfrizzle.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "fizzle_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairshaggymullet:
+            case shortHairShaggyMullet:
                 return Util.getSvg("tops/top/shorthairshaggymullet.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "mullet_mask2")),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc))
                 );
-            case shorthairshortcurly:
+            case shortHairShortCurly:
                 return Util.getSvg("tops/top/shorthairshortcurly.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "curly_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairshortflat:
+            case shortHairShortFlat:
                 return Util.getSvg("tops/top/shorthairshortflat.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "flat_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairshortround:
+            case shortHairShortRound:
                 return Util.getSvg("tops/top/shorthairshortround.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "round_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairshortwaved:
+            case shortHairShortWaved:
                 return Util.getSvg("tops/top/shorthairshortwaved.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "waved_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairsides:
+            case shortHairSides:
                 return Util.getSvg("tops/top/shorthairsides.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "side_mask1")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairthecaesar:
+            case shortHairTheCaesar:
                 return Util.getSvg("tops/top/shorthairthecaesar.svgx",
                         new Pair<String, String>("hairColorHex", hairColorHex(hairC)),
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "caesar_mask2")),
                         new Pair<String, String>("accessorySvg", accessorySvg(acc))
                 );
-            case shorthairthecaesarsidepart:
+            case shortHairTheCaesarSidePart:
                 return Util.getSvg("tops/top/shorthairthecaesarsidepart.svgx",
                         new Pair<String, String>("facialHair", facialHair(fh, fhc)),
                         new Pair<String, String>("hairColor", hairColor(hairC, "caesar_mask2")),
@@ -252,23 +252,23 @@ public class Tops {
         switch (hair) {
             case blank:
                 return "";
-            case beardmedium:
+            case beardMedium:
                 return Util.getSvg("tops/facialhair/beardmedium.svgx");
-            case beardlight:
+            case beardLight:
                 return Util.getSvg("tops/facialhair/beardlight.svgx",
                         new Pair<String, String>("facialHairColorHex", facialHairColorHex(color)),
                         new Pair<String, String>("facialHairColor", facialHairColor(color, "light_mask"))
                 );
-            case beardmagestic:
+            case beardMajestic:
                 return Util.getSvg("tops/facialhair/beardmagestic.svgx",
                         new Pair<String, String>("facialHairColorHex", facialHairColorHex(color)),
                         new Pair<String, String>("facialHairColor", facialHairColor(color, "magestic_mask"))
                 );
-            case moustachefancy:
+            case moustacheFancy:
                 return Util.getSvg("tops/facialhair/moustachefancy.svgx",
                         new Pair<String, String>("facialHairColor", facialHairColor(color, "fancy_mask"))
                 );
-            case moustachemagnum:
+            case moustacheMagnum:
                 return Util.getSvg("tops/facialhair/moustachemagnum.svgx",
                         new Pair<String, String>("facialHairColor", facialHairColor(color, "magnum_mask"))
                 );
